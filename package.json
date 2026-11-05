@@ -1,0 +1,54 @@
+{
+  "name": "booknook-fullstack",
+  "version": "2.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "build:auth": "tsc -p packages/auth/tsconfig.json",
+    "build:server": "tsc -p server/tsconfig.json",
+    "dev": "npm run build:auth && dotenv -e .env -- concurrently -k -n CLIENT,API \"next dev client --webpack --hostname 0.0.0.0 --port 3005\" \"tsx watch server/src/index.ts\"",
+    "build": "npm run build:auth && npm run build:server && dotenv -e .env -- next build client --webpack",
+    "start": "dotenv -e .env -v NODE_ENV=production -- concurrently -k -n CLIENT,API \"next start client --hostname 0.0.0.0 --port 3005\" \"node server/dist/index.js\"",
+    "test": "npm run build:auth && tsx --test server/test/integration.test.ts",
+    "seed": "npm run build:auth && dotenv -e .env -- tsx server/src/seed.ts",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "format": "prettier --write client/app client/components client/lib server/src server/test packages/auth/src scripts docs *.md *.json"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "prettier": "^3.9.10",
+    "@types/react-dom": "^19.2.2",
+    "daisyui": "^5.4.7",
+    "dotenv-cli": "^10.0.0",
+    "tailwindcss": "^4.1.17",
+    "@types/express": "^5.0.5",
+    "@tailwindcss/postcss": "^4.1.17",
+    "concurrently": "^9.2.1",
+    "@types/react": "^19.2.2",
+    "typescript": "^5.9.3",
+    "tsx": "^4.20.6",
+    "@types/node": "^22.19.0",
+    "mongodb-memory-server-core": "^10.3.0"
+  },
+  "dependencies": {
+    "next": "^16.0.1",
+    "swiper": "^12.0.3",
+    "zod": "^4.1.12",
+    "helmet": "^8.1.0",
+    "react-dom": "^19.2.0",
+    "sonner": "^2.0.7",
+    "react": "^19.2.0",
+    "better-auth": "1.7.17",
+    "express-rate-limit": "^8.2.1",
+    "cors": "^2.8.5",
+    "jose": "^6.1.2",
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
+    "@better-auth/mongo-adapter": "1.7.17",
+    "lucide-react": "^0.552.0"
+  }
+}
