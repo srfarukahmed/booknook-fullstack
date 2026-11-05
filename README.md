@@ -6,9 +6,11 @@ Built with **Express.js, TypeScript, MongoDB, BetterAuth’s MongoDB adapter, an
 
 ## Author
 
-- **Name:** md faruk ahmed
+- **Name:** Md. Faruk Ahmed
+- **Email: info.srfarukahmed@gmail.com
 - **GitHub:** [srfarukahmed](https://github.com/srfarukahmed)
 - **Server Repository:** [booknook-server](https://github.com/srfarukahmed/booknook-server)
+- **Live Website:** https://booknook-faruk.vercel.app
 
 ## Features
 
