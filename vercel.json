@@ -1,0 +1,23 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "frontend": {
+      "root": "client",
+      "framework": "nextjs",
+      "installCommand": "cd .. && npm ci",
+      "buildCommand": "cd .. && npm run build:auth && npx next build client --webpack",
+      "outputDirectory": ".next"
+    },
+    "backend": {
+      "root": ".",
+      "framework": "express",
+      "entrypoint": "server/src/vercel.ts",
+      "installCommand": "npm ci",
+      "buildCommand": "npm run build:auth && npm run build:server"
+    }
+  },
+  "rewrites": [
+    { "source": "/library-api/:path*", "destination": { "service": "backend" } },
+    { "source": "/:path*", "destination": { "service": "frontend" } }
+  ]
+}
