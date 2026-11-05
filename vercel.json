@@ -1,5 +1,4 @@
 {
-  
   "services": {
     "frontend": {
       "root": "client",
@@ -17,7 +16,24 @@
     }
   },
   "rewrites": [
-    { "source": "/library-api/:path*", "destination": { "service": "backend" } },
-    { "source": "/:path*", "destination": { "service": "frontend" } }
+    {
+      "source": "/library-api/:path*",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/",
+      "destination": {
+        "service": "frontend",
+        "path": "/index"
+      }
+    },
+    {
+      "source": "/:path*",
+      "destination": {
+        "service": "frontend"
+      }
+    }
   ]
 }
